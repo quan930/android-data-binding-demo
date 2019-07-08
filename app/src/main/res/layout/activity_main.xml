@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="handler"
+            type="app.mrquan.databindingdemo.MyHandler"/>
+        <variable
+            name="books"
+            type="android.databinding.ObservableList&lt;app.mrquan.databindingdemo.pojo.Book>"/>
+        <variable
+            name="bookAdapter"
+            type="app.mrquan.databindingdemo.BookAdapter"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+        <ListView
+            android:id="@+id/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:adapter="@{bookAdapter}"/>
+        <!--方法引用-->
+        <Button
+            android:text="@{String.valueOf(context)}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="@{(view) -> handler.addBook(view,books,bookAdapter)}"/>
+        <!--监听绑定-->
+        <Button
+            android:text="全部+1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="@{(view) -> handler.add(view,books)}" />
+    </LinearLayout>
+</layout>
